@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+
+    .container {
+        width: 400px;
+        margin: 80px auto;
+        background: #ffffff;
+        color: #333;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+        text-align: center;
+        color: #2a5298;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #2a5298;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: #1e3c72;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .form-title {
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #2a5298;
+    }
+
+    .preview {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN FORM -->
+<div class="container" id="loginBox">
+    <h2>Student Login</h2>
+    <input type="email" id="loginEmail" placeholder="Enter Email" required>
+    <input type="password" id="loginPassword" placeholder="Enter Strong Password" required>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- STUDENT FORM -->
+<div class="container hidden" id="studentForm">
+    <h2>Student Registration</h2>
+
+    <div class="form-title">Personal Details</div>
+
+    <input type="text" placeholder="First Name">
+    <input type="text" placeholder="Middle Name">
+    <input type="text" placeholder="Last Name">
+
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Phone Number">
+    <input type="text" placeholder="Tel Number">
+
+    <input type="file" accept="image/*" onchange="previewImage(event)">
+
+    <div class="preview">
+        <img id="output">
+    </div>
+
+    <button onclick="submitForm()">Submit</button>
+</div>
+
+<script>
+    function login() {
+        let email = document.getElementById("loginEmail").value;
+        let password = document.getElementById("loginPassword").value;
+
+        // simple validation (demo only)
+        if (email && password.length >= 6) {
+            document.getElementById("loginBox").classList.add("hidden");
+            document.getElementById("studentForm").classList.remove("hidden");
+        } else {
+            alert("Enter valid email and strong password (min 6 chars)");
+        }
+    }
+
+    function previewImage(event) {
+        let image = document.getElementById("output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.style.display = "block";
+    }
+
+    function submitForm() {
+        alert("Student data submitted successfully!");
+    }
+</script>
+
+</body>
+</html>
